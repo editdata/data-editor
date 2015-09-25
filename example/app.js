@@ -8,7 +8,6 @@ var state = {
 }
 
 var mapView = require('../map')({
-  el: appEl,
   leaflet: {
     zoom: 12,
     center: [47.645, -122.333],
@@ -23,10 +22,11 @@ mapView.addEventListener('load', function () {
 })
 
 function render (state) {
+  var view
   if (state.view === 'map') {
-    mapView.render(state)
+    view = mapView.render(state)
   } else if (state.view === 'table') {
     // render tableView
   }
-  editor.render()
+  editor.render([view], state)
 }
