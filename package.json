@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sethvincent/data-editor.git"
+    "url": "git+https://github.com/editdata/data-editor.git"
   },
   "keywords": [
     "data",
@@ -20,9 +20,9 @@
   "author": "sethvincent",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sethvincent/data-editor/issues"
+    "url": "https://github.com/editdata/data-editor/issues"
   },
-  "homepage": "https://github.com/sethvincent/data-editor#readme",
+  "homepage": "https://github.com/editdata/data-editor#readme",
   "dependencies": {
     "base-element": "^3.0.1",
     "csv-write-stream": "^1.0.0",
