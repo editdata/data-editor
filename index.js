@@ -36,7 +36,7 @@ Editor.prototype.renderView = function (view, state) {
   this.render([view(state)], state)
 }
 
-Editor.prototype.write = function (item) {
+Editor.prototype._write = function (item) {
   this.state.data.push(item)
   this.render(this.state)
 }
@@ -157,7 +157,7 @@ Editor.prototype.addRow = function (row) {
   }
 
   var value = this.formatRow(row)
-  this.write({ key: rowkey, value: value })
+  this._write({ key: rowkey, value: value })
 }
 
 Editor.prototype.getRow = function (key) {
