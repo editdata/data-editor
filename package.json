@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "tape tests/*.js | tap-spec"
+    "test": "tape tests/*.js | tap-spec",
+    "test-browser": "budo tests/shareabouts.js -- -t [ envify --NODE_ENV development ]"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
     "base-element": "^3.0.1",
     "csv-write-stream": "^1.0.0",
     "cuid": "^1.3.8",
+    "data-set": "^4.0.0",
+    "dom-value": "0.0.0",
     "extend": "^3.0.0",
     "from2": "^2.1.0",
     "from2-array": "0.0.4",
@@ -38,7 +41,11 @@
     "view-list": "^2.0.0"
   },
   "devDependencies": {
+    "corsify": "^2.1.0",
+    "http-proxy": "^1.11.2",
     "level-js": "^2.2.2",
-    "levelup": "^1.2.1"
+    "levelup": "^1.2.1",
+    "request": "^2.64.0",
+    "xhr": "^2.1.0"
   }
 }

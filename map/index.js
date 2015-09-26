@@ -11,8 +11,10 @@ function DataMap (options) {
   BaseElement.call(this, options.el)
   var self = this
 
-  this.addEventListener('load', function (node, a, b) {
+  this.addEventListener('load', function (node) {
     var mapEl = node.childNodes[0]
+    L.mapbox.accessToken = options.leaflet.accessToken
+    options.leaflet.popupOptions = null
     self.map = L.mapbox.map(mapEl, 'mapbox.streets', options.leaflet)
 
     self.map.on('click', function (e) {
@@ -24,7 +26,7 @@ function DataMap (options) {
 }
 
 DataMap.prototype.render = function (state) {
-  if (this.markers) this.markers.setGeoJSON(state.geojson)
+  if (this.markers) this.markers.setGeoJSON(state.data)
   var vtree = this.html('div#map-container', this, [
     this.html('div#map')
   ])

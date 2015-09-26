@@ -160,7 +160,9 @@ Editor.prototype.addRow = function (row) {
   this._write({ key: rowkey, value: value })
 }
 
-Editor.prototype.getRow = function (key) {
+Editor.prototype.getRow = function (key, options) {
+  if (options.geojson) // return gsojson version of the row
+
   return this.state.data.find(function (row) {
     return row.key === key
   })

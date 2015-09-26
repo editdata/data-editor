@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>data-editor example</title>
 <link href='https://api.mapbox.com/mapbox.js/v2.2.2/mapbox.css' rel='stylesheet' />
+<link href='/style-editdata.css' rel='stylesheet' />
 <style>
 html, body {
   width: 100%;
@@ -14,9 +15,14 @@ html, body {
   width: 100%;
   height: 100%;
 }
+#editor-inner {
+  position: absolute;
+  overflow: scroll;
+}
 </style>
 </head>
 <body>
+<button id="toggle">toggle</button>
 <div id="app"></div>
 <script src="/app.js"></script>
 </body>
