@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "an editor for tabular data built with virtual-dom and base-element",
   "main": "index.js",
+  "style": "style.css",
   "directories": {
     "test": "tests"
   },
