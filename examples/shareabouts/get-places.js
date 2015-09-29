@@ -8,5 +8,4 @@ request({
 }, function (err, res, body) {
   if (err) return callback(err)
   if (res.statusCode >= 400) return callback(body)
-  console.log(body)
 })

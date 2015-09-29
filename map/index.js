@@ -25,7 +25,6 @@ DataMap.prototype.setGeoJSON = function (geojson) {
 }
 
 DataMap.prototype.render = function (state) {
-  console.log(state)
   if (this.geojson && state.geojson) this.setGeoJSON(state.geojson)
   var vtree = this.html('div#map-container', this, [
     this.html('div#map')

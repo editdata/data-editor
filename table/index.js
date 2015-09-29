@@ -18,8 +18,6 @@ module.exports = function (opts) {
   function rows (row) {
     if (row.id && !row.key) row.key = row.id
     if (!row.value) row.value = row.properties
-    console.log(row)
-
     var properties = Object.keys(row.value)
     var elements = properties.map(element)
 
@@ -57,7 +55,6 @@ module.exports = function (opts) {
       else if (typeof row.value[key] === 'boolean') value = row.value[key].toString()
       else value = row.value[key]
 
-      console.log(key, value, typeof value)
       return list.html('li.list-property', [
         list.html('span.list-property-value', propertyOptions, value)
       ])
