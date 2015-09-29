@@ -22,16 +22,19 @@ var mapView = require('../map')({
 })
 
 mapView.addEventListener('load', function () {
-  getPlaces(function (err, body) {
-    if (err) console.error(err)
-
-    state.data = formatter.format(body.features)
-    state.geojson = {
-      features: formatter.toGeoJSON(state.data, { convertToNames: false })
-    }
-
-    render(state)
-  })
+  if (!state.data.length && !state.geojson) {
+    getPlaces(function (err, body) {
+      if (err) console.error(err)
+      var formatted = formatter.format(body.features)
+      state.data = formatted.data
+      state.properties = formatted.properties
+      state.geojson = {
+        features: formatter.toGeoJSON(formatted, { convertToNames: false })
+      }
+      render(state)
+    })
+  }
+  render(state)
 })
 
 render(state)
@@ -41,6 +44,7 @@ function render (state) {
   if (state.view === 'map') {
     view = mapView.render(state)
   } else if (state.view === 'table') {
+    console.log(state)
     view = tableView.render(state.data)
   }
   editor.render([view], state)
