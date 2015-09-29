@@ -11,7 +11,7 @@ html, body {
   height: 100%;
   margin: 0px;
 }
-#app, #editor-inner, #map-container, #map {
+#app, #editor-wrapper, .view-wrapper, #map-container, #map {
   width: 100%;
   height: 100%;
 }
@@ -19,11 +19,23 @@ html, body {
   position: absolute;
   overflow: scroll;
 }
+
+.editor-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+}
+
+.view-wrapper {
+  position: fixed;
+  top: 40px;
+}
 </style>
 </head>
 <body>
-<button id="toggle">toggle</button>
 <div id="app"></div>
-<script src="/app.js"></script>
+<script src="/index.js"></script>
 </body>
 </html>

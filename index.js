@@ -28,7 +28,7 @@ function Editor (el, options) {
 }
 
 Editor.prototype.render = function (elements, state) {
-  var vtree = this.html('div#editor-inner', elements)
+  var vtree = this.html('div#editor-wrapper', elements)
   return this.afterRender(vtree)
 }
 

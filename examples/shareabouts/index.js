@@ -1,5 +1,6 @@
 var request = require('xhr')
-var DataEditor = require('../index')
+var h = require('virtual-dom/h')
+var DataEditor = require('../../index')
 var formatter = require('data-format')()
 
 var appEl = document.getElementById('app')
@@ -11,9 +12,9 @@ var state = window.state = {
   data: []
 }
 
-var tableView = require('../table')()
+var tableView = require('../../table')()
 
-var mapView = require('../map')({
+var mapView = require('../../map')({
   leaflet: {
     zoom: 12,
     center: [47.545, -122.336],
@@ -44,10 +45,24 @@ function render (state) {
   if (state.view === 'map') {
     view = mapView.render(state)
   } else if (state.view === 'table') {
-    console.log(state)
     view = tableView.render(state.data)
   }
-  editor.render([view], state)
+  var ui = h('div.editor-ui', [
+    h('div.editor-header', [
+      h('button#toggle', {
+        onclick: function (e) {
+          e.preventDefault()
+          if (state.view === 'map') {
+            state.view = 'table'
+          } else {
+            state.view = 'map'
+          }
+          render(state)
+        }
+      }, 'toggle')
+    ])
+  ])
+  editor.render([ui, h('div.view-wrapper', [view])], state)
 }
 
 function getPlaces (callback) {
@@ -62,12 +77,3 @@ function getPlaces (callback) {
   })
 }
 
-document.getElementById('toggle').addEventListener('click', function (e) {
-  e.preventDefault()
-  if (state.view === 'map') {
-    state.view = 'table'
-  } else {
-    state.view = 'map'
-  }
-  render(state)
-})
