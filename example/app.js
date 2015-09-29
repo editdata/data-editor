@@ -1,5 +1,6 @@
 var request = require('xhr')
 var DataEditor = require('../index')
+var formatter = require('data-format')()
 
 var appEl = document.getElementById('app')
 var editor = DataEditor(appEl, {})
@@ -10,6 +11,8 @@ var state = window.state = {
   data: []
 }
 
+var tableView = require('../table')()
+
 var mapView = require('../map')({
   leaflet: {
     zoom: 12,
@@ -18,12 +21,15 @@ var mapView = require('../map')({
   }
 })
 
-var tableView = require('../table')()
-
 mapView.addEventListener('load', function () {
   getPlaces(function (err, body) {
-    if (err) console.log(err)
-    state.data = body.features
+    if (err) console.error(err)
+
+    state.data = formatter.format(body.features)
+    state.geojson = {
+      features: formatter.toGeoJSON(state.data, { convertToNames: false })
+    }
+
     render(state)
   })
 })
@@ -35,7 +41,6 @@ function render (state) {
   if (state.view === 'map') {
     view = mapView.render(state)
   } else if (state.view === 'table') {
-    console.log(tableView.render(state.data))
     view = tableView.render(state.data)
   }
   editor.render([view], state)
@@ -49,7 +54,6 @@ function getPlaces (callback) {
   }, function (err, res, body) {
     if (err) return callback(err)
     if (res.statusCode >= 400) return callback(body)
-    console.log('res', res)
     return callback(null, JSON.parse(body))
   })
 }
