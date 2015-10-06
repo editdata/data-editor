@@ -1,6 +1,5 @@
 var ViewList = require('view-list')
 var extend = require('extend')
-var value = require('dom-value')
 var dataset = require('data-set')
 
 module.exports = function (opts) {
@@ -39,6 +38,10 @@ module.exports = function (opts) {
         list.send('blur', e, property, row)
       }
 
+      function onclick (e) {
+        list.send('click', e, row, key, row.value[key])
+      }
+
       var propertyOptions = {
         id: 'cell-' + row.key + '-' + key,
         attributes: {
@@ -46,7 +49,8 @@ module.exports = function (opts) {
           'data-key': key
         },
         onfocus: onfocus,
-        onblur: onblur
+        onblur: onblur,
+        onclick: onclick
       }
 
       var value
@@ -61,10 +65,7 @@ module.exports = function (opts) {
     }
 
     var rowOptions = {
-      attributes: { 'data-key': row.key },
-      onclick: function (e) {
-        list.send('click', e, row)
-      }
+      attributes: { 'data-key': row.key }
     }
 
     if (row.active) {

@@ -13,13 +13,10 @@ var state = window.state = {
 }
 
 var tableView = require('../../table')()
-
 var mapView = require('../../map')({
-  leaflet: {
-    zoom: 12,
-    center: [47.545, -122.336],
-    accessToken: 'pk.eyJ1Ijoic2V0aHZpbmNlbnQiLCJhIjoiSXZZXzZnUSJ9.Nr_zKa-4Ztcmc1Ypl0k5nw'
-  }
+  zoom: 12,
+  center: [47.545, -122.336],
+  accessToken: 'pk.eyJ1Ijoic2V0aHZpbmNlbnQiLCJhIjoiSXZZXzZnUSJ9.Nr_zKa-4Ztcmc1Ypl0k5nw'
 })
 
 mapView.addEventListener('load', function () {

@@ -13,9 +13,12 @@ function DataMap (options) {
   options.tiles = options.tiles || 'mapbox.streets'
   this.addEventListener('load', function (node) {
     var mapEl = node.childNodes[0]
-    L.mapbox.accessToken = options.leaflet.accessToken
-    options.leaflet.popupOptions = null
-    self.map = L.mapbox.map(mapEl, options.tiles, options.leaflet)
+    var tiles = options.tiles
+    L.mapbox.accessToken = options.accessToken
+    delete options.accessToken
+    delete options.tiles
+    options.popupOptions = null
+    self.map = L.mapbox.map(mapEl, tiles, options)
     self.geojson = L.mapbox.featureLayer().addTo(self.map)
   })
 }

@@ -9,7 +9,9 @@
   },
   "scripts": {
     "test": "tape tests/*.js | tap-spec",
-    "test-browser": "budo tests/shareabouts.js -- -t [ envify --NODE_ENV development ]"
+    "test-browser": "budo tests/shareabouts.js -- -t [ envify --NODE_ENV development ]",
+    "example-shareabouts": "budo examples/shareabouts/index.js --dir examples/shareabouts -- -t [ envify --NODE_ENV development ]",
+    "example-basic": "budo examples/basic/index.js --dir examples/basic -- -t [ envify --NODE_ENV development ]"
   },
   "repository": {
     "type": "git",
@@ -43,7 +45,9 @@
     "view-list": "^2.0.0"
   },
   "devDependencies": {
+    "budo": "^5.1.1",
     "corsify": "^2.1.0",
+    "envify": "^3.4.0",
     "http-proxy": "^1.11.2",
     "level-js": "^2.2.2",
     "levelup": "^1.2.1",

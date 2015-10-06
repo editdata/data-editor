@@ -32,10 +32,6 @@ Editor.prototype.render = function (elements, state) {
   return this.afterRender(vtree)
 }
 
-Editor.prototype.renderView = function (view, state) {
-  this.render([view(state)], state)
-}
-
 Editor.prototype._write = function (item) {
   this.state.data.push(item)
   this.render(this.state)
@@ -113,6 +109,9 @@ Editor.prototype.addProperty = function (property) {
   this.state.data.forEach(function (item) {
     item.value[property.key] = null
   })
+
+  this.emit('property:add', prop)
+  return prop
 }
 
 Editor.prototype.getProperty = function (id) {
@@ -120,11 +119,14 @@ Editor.prototype.getProperty = function (id) {
 }
 
 Editor.prototype.updateProperty = function (id, options) {
-  return formatData.updateProperty(this.properties, id, options)
+  var prop = formatData.updateProperty(this.properties, id, options)
+  this.emit('property:update', prop)
+  return prop
 }
 
 Editor.prototype.removeProperty = function (id) {
   formatData.removeProperty(this.properties, id)
+  this.emit('property:remove', id)
 }
 
 Editor.prototype.setPropertyName = function (key, name) {
@@ -157,11 +159,13 @@ Editor.prototype.addRow = function (row) {
   }
 
   var value = this.formatRow(row)
-  this._write({ key: rowkey, value: value })
+  var data = { key: rowkey, value: value }
+  this._write(data)
+  this.emit('row:add', data)
 }
 
 Editor.prototype.getRow = function (key, options) {
-  if (options.geojson) // return gsojson version of the row
+  // if (options.geojson) // return gsojson version of the row
 
   return this.state.data.find(function (row) {
     return row.key === key
@@ -173,6 +177,7 @@ Editor.prototype.updateRow = function (key, options) {
   options = formatData.convertToKeys(this.properties, options)
   row = extend(row, options)
   this.state.data[row.key] = row
+  this.emit('row:update', row)
 }
 
 Editor.prototype.removeRow = function (key) {
@@ -180,6 +185,7 @@ Editor.prototype.removeRow = function (key) {
   this.state.data = this.state.data.filter(function (row) {
     return row.key !== key
   })
+  this.emit('row:remove', key)
 }
 
 Editor.prototype.activeRow = function (row) {
@@ -189,6 +195,7 @@ Editor.prototype.activeRow = function (row) {
 
 Editor.prototype.setActiveRow = function (row) {
   this._activeRow = row
+  this.emit('row:active', row)
   return this._activeRow
 }
 
