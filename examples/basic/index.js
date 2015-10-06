@@ -20,7 +20,7 @@ tableView.addEventListener('click', function (e, row, key, value) {
 })
 
 function render (state) {
-  var view = tableView.render(state.data)
+  var view = tableView.render(state)
   editor.render([h('div.view-wrapper', [view])], state)
 }
 

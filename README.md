@@ -42,7 +42,7 @@ editor.addEventListener('property:update', function (property) {
 
 })
 
-editor.addEventListener('property:remove', function (property) {
+editor.addEventListener('property:remove', function (key) {
 
 })
 
