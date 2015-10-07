@@ -12,6 +12,10 @@ function DataTable (options) {
   BaseElement.call(this, options.el)
   this.rows = rowsView(options)
   this.properties = propertiesView(options)
+  this.rows.addEventListener('load', function (el) {
+    console.log()
+    el.style.height = (window.innerHeight - (options.offsetX || 35)) + 'px'
+  })
 }
 
 DataTable.prototype.render = function (state) {

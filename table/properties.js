@@ -25,6 +25,6 @@ TableProperties.prototype.render = function (properties) {
     ]))
   })
 
-  var vtree = this.html('div.data-table-properties', this, items)
+  var vtree = this.html('ul.data-table-properties', this, items)
   return this.afterRender(vtree)
 }

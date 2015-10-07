@@ -3,13 +3,15 @@ var dataset = require('data-set')
 var extend = require('extend')
 
 module.exports = function rowsView (opts) {
+  var rowHeight = opts.rowHeight || 30
+  var height = window.innerHeight - rowHeight
   var options = extend({
     className: 'data-table-rows',
-    rowHeight: 40,
+    rowHeight: rowHeight,
     eachrow: rows,
     editable: true,
     properties: {},
-    height: 643
+    height: height
   }, opts)
 
   var list = ViewList(options)
@@ -59,9 +61,7 @@ module.exports = function rowsView (opts) {
       else if (typeof row.value[key] === 'boolean') value = row.value[key].toString()
       else value = row.value[key]
 
-      return list.html('li.list-property', [
-        list.html('span.list-property-value', propertyOptions, value)
-      ])
+      return list.html('li.data-table-value', propertyOptions, value)
     }
 
     var rowOptions = { attributes: { 'data-key': row.key } }
@@ -71,8 +71,8 @@ module.exports = function rowsView (opts) {
       rowOptions.attributes['data-active'] = 'true'
     }
 
-    return list.html('li.list-row', rowOptions, [
-      list.html('ul.list-properties', elements)
+    return list.html('li.data-table-row', rowOptions, [
+      list.html('ul.data-table-row-items', elements)
     ])
   }
 
