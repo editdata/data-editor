@@ -15,8 +15,6 @@ function DataMap (options) {
     var mapEl = node.childNodes[0]
     var tiles = options.tiles
     L.mapbox.accessToken = options.accessToken
-    delete options.accessToken
-    delete options.tiles
     options.popupOptions = null
     self.map = L.mapbox.map(mapEl, tiles, options)
     self.geojson = L.mapbox.featureLayer().addTo(self.map)
