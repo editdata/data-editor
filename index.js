@@ -216,33 +216,6 @@ Editor.prototype.validateRow = function (prop, value) {
 }
 
 /*
-* Modals
-*/
-Editor.prototype.openModal = function (options) {
-
-}
-
-Editor.prototype.expandModal = function (options) {
-
-}
-
-Editor.prototype.shrinkModal = function (row, callback) {
-
-}
-
-Editor.prototype.closeModal = function (options) {
-
-}
-
-Editor.prototype.isModalActive = function (options) {
-
-}
-
-Editor.prototype.isModalExpanded = function (options) {
-
-}
-
-/*
 * Keys
 */
 Editor.prototype.createRowKey = function () {
