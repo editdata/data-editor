@@ -10,8 +10,9 @@
   "scripts": {
     "test": "tape tests/*.js | tap-spec",
     "test-browser": "budo tests/shareabouts.js -- -t [ envify --NODE_ENV development ]",
-    "example-shareabouts": "budo examples/shareabouts/index.js --dir examples/shareabouts -- -t [ envify --NODE_ENV development ]",
-    "example-basic": "budo examples/basic/index.js --dir examples/basic -- -t [ envify --NODE_ENV development ]"
+    "example-shareabouts": "budo examples/shareabouts/index.js --live --dir examples/shareabouts -- -t [ envify --NODE_ENV development ]",
+    "example-basic-css": "sheetify examples/basic/style.css > examples/basic/bundle.css",
+    "example-basic": "budo examples/basic/index.js --live --onupdate 'npm run example-basic-css' --dir examples/basic -- -t [ envify --NODE_ENV development ]"
   },
   "repository": {
     "type": "git",
@@ -47,11 +48,13 @@
   "devDependencies": {
     "budo": "^5.1.1",
     "corsify": "^2.1.0",
+    "data-grid": "editdata/data-grid",
     "envify": "^3.4.0",
     "http-proxy": "^1.11.2",
     "level-js": "^2.2.2",
     "levelup": "^1.2.1",
     "request": "^2.64.0",
+    "sheetify": "^2.0.3",
     "virtual-dom": "^2.1.1",
     "xhr": "^2.1.0"
   }
