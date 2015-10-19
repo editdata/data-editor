@@ -9,7 +9,6 @@ var mapView = require('data-map')({
 
 var data = require('./data.json')
 var appEl = document.getElementById('app')
-var editor = DataEditor(appEl, {})
 
 var formatted = formatter.format(data)
 var state = window.state = {
@@ -23,17 +22,25 @@ var state = window.state = {
   }
 }
 
+var editor = DataEditor(appEl, state)
+
 mapView.addEventListener('load', function () {
   render(state)
 })
 
-mapView.addEventListener('click:layer', function (e) {
-  console.log('clicked layer', e)
+mapView.addEventListener('click', function (e, feature, layer) {
+  var row = editor.getRow(feature.id)
+  console.log('row', row)
 })
 
 function render (state) {
+  var elements = []
   var view = mapView.render(state)
-  editor.render([h('div.view-wrapper', [view])], state)
+  elements.push(h('div.view-wrapper', [view])
+  if (state.activeRow) {
+    elements.push([])
+  }
+  editor.render(elements, state)
 }
 
 render(state)

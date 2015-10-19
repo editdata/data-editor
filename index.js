@@ -14,22 +14,22 @@ inherits(Editor, BaseElement)
 function Editor (el, options) {
   if (!(this instanceof Editor)) return new Editor(el, options)
   BaseElement.call(this, el)
-  this.state = {
+  this.state = extend({
     properties: {},
     data: [],
-    metadata: {
-      title: options.title,
-      description: options.description,
-      source: options.source,
-      url: options.url
-    },
+    metadata: {},
     _activeRow: null
-  }
+  }, options)
 }
 
 Editor.prototype.render = function (elements, state) {
+  this.setState(state)
   var vtree = this.html('div#editor-wrapper', elements)
   return this.afterRender(vtree)
+}
+
+Editor.prototype.setState = function (state) {
+  this.state = extend(this.state, state)
 }
 
 Editor.prototype._write = function (item) {
@@ -166,10 +166,17 @@ Editor.prototype.addRow = function (row) {
 
 Editor.prototype.getRow = function (key, options) {
   // if (options.geojson) // return gsojson version of the row
-
-  return this.state.data.find(function (row) {
-    return row.key === key
-  })
+  var row
+  var i = 0
+  var l = this.state.data.length
+  console.log(l)
+  for (i; i < l; i++) {
+    if (this.state.data[i].key === key) {
+      console.log(key, this.state.data[i].key)
+      row = this.state.data[i]
+    }
+  }
+  return row
 }
 
 Editor.prototype.updateRow = function (key, options) {
