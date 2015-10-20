@@ -10,6 +10,28 @@ function CardHeader () {
 }
 
 CardHeader.prototype.render = function (state) {
-  var vtree = this.html('div#data-card-header', [])
+  var self = this
+  var vtree = this.html('div#data-card-header', [
+    this.html('div.data-card-actions', [
+      this.html('button.data-card-action.data-card-action-close.button', {
+        href: '#',
+        onclick: function (e) {
+          self.send('close', e)
+        }
+      }, 'close')
+    ])
+  ])
   return this.afterRender(vtree)
 }
+
+/*
+destroy button
+
+,
+this.html('button#destroyRow.small.button-orange', {
+  onclick: function (e) {
+    self.send('row:destroy', state.activeRow.data)
+  }
+}, 'destroy row')
+])
+*/

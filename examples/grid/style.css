@@ -62,7 +62,7 @@ DATA CARD
 
 .data-card-field {
   margin: 0px;
-  border: 2px solid #efefef;
+  border: 1px solid #efefef;
   padding: 10px;
   width: 100%;
   height: 100px;
@@ -70,4 +70,37 @@ DATA CARD
   resize: none;
   outline: 0;
   color: #aaa;
+}
+
+.data-card-field:focus {
+  border: 1px solid #c1c1cc;
+  color: #333;
+}
+
+#data-card-header {
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.data-card-actions {
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid #fafafa;
+}
+
+.data-card-action {
+  border: 0px;
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  display: list-item;
+  padding: 0px 15px;
+  background-color: #fff;
+  border-right: 1px solid #fafafa;
+  color: #444;
+}
+
+.data-card-action:hover {
+  color: #000;
+  background-color: #f3f3f1;
 }

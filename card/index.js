@@ -7,16 +7,24 @@ var createHeader = require('./header')
 module.exports = DataCard
 inherits(DataCard, BaseElement)
 
-function DataCard (el) {
-  if (!(this instanceof DataCard)) return new DataCard(el)
-  BaseElement.call(this, el)
+function DataCard (options) {
+  if (!(this instanceof DataCard)) return new DataCard(options)
+  options = options || {}
+  BaseElement.call(this, options.el)
+  var self = this
+  this.header = options.header || createHeader()
+  this.header.addEventListener('close', function (e) {
+    self.send('close', e)
+  })
+  this.header.addEventListener('row:destroy', function (row) {
+    self.send('row:destroy', row)
+  })
 }
 
 DataCard.prototype.render = function (state) {
   if (!state.activeRow) return
   var h = this.html
   var fields = []
-  var props = state.properties
   var columns = state.activeRow.data.value
 
   Object.keys(columns).forEach(function (key) {
@@ -35,9 +43,10 @@ DataCard.prototype.render = function (state) {
     ])
     fields.push(wrapper)
   })
-  
+
   var vtree = this.html('div#data-card-wrapper', [
     this.html('div#data-card', [
+      this.header.render(state),
       this.html('div.data-card-fields', fields)
     ])
   ])

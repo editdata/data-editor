@@ -17,6 +17,15 @@ var state = window.state = {
   activeRow: null
 }
 
+dataCard.addEventListener('close', function (e) {
+  state.activeRow = null
+  render(state)
+})
+
+dataCard.addEventListener('row:destroy', function (e) {
+
+})
+
 gridView.addEventListener('click', function (e, row, key, value) {
   console.log(e, row, key, value)
   state.activeRow = {
