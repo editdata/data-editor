@@ -27,12 +27,12 @@ dataCard.addEventListener('row:destroy', function (e) {
 })
 
 gridView.addEventListener('click', function (e, row, key, value) {
-  console.log(e, row, key, value)
   state.activeRow = {
     data: row,
     element: e.target
   }
   render(state)
+  document.querySelector('#data-card-field-' + key).focus()
 })
 
 function render (state) {

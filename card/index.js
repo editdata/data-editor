@@ -32,7 +32,8 @@ DataCard.prototype.render = function (state) {
     var value = columns[key]
     var type = property.type[0]
     if (type === 'string') {
-      var field = h('textarea.data-card-field.data-element-string', {
+      var el = 'textarea#data-card-field-' + key + '.data-card-field.data-element-string'
+      var field = h(el, {
         value: value
       }, value)
     }
