@@ -4,10 +4,9 @@ var inherits = require('inherits')
 module.exports = CardHeader
 inherits(CardHeader, BaseElement)
 
-function CardHeader (options) {
-  if (!(this instanceof CardHeader)) return new CardHeader(options)
-  BaseElement.call(this, options.el)
-  var self = this
+function CardHeader () {
+  if (!(this instanceof CardHeader)) return new CardHeader()
+  BaseElement.call(this)
 }
 
 CardHeader.prototype.render = function (state) {
