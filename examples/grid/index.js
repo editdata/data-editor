@@ -2,7 +2,7 @@ var h = require('virtual-dom/h')
 var DataEditor = require('../../index')
 var formatter = require('data-format')()
 var gridView = require('data-grid')()
-var dataCard = require('../../card')()
+var dataForm = require('data-form')()
 var data = require('./data.json')
 var appEl = document.getElementById('app')
 var editor = DataEditor(appEl, {})
@@ -17,12 +17,12 @@ var state = window.state = {
   activeRow: null
 }
 
-dataCard.addEventListener('close', function (e) {
+dataForm.addEventListener('close', function (e) {
   state.activeRow = null
   render(state)
 })
 
-dataCard.addEventListener('row:destroy', function (e) {
+dataForm.addEventListener('row:destroy', function (e) {
 
 })
 
@@ -32,7 +32,7 @@ gridView.addEventListener('click', function (e, row, key, value) {
     element: e.target
   }
   render(state)
-  document.querySelector('#data-card-field-' + key).focus()
+  document.querySelector('#data-form-field-' + key).focus()
 })
 
 function render (state) {
@@ -40,7 +40,7 @@ function render (state) {
   var viewWrapper = 'div.view-wrapper'
   viewWrapper += state.activeRow ? '.card-open' : '.card-closed'
   elements.push(h(viewWrapper, [gridView.render(state)]))
-  if (state.activeRow) elements.push(dataCard.render(state))
+  if (state.activeRow) elements.push(dataForm.render(state))
   editor.render(elements, state)
 }
 

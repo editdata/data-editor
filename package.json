@@ -48,6 +48,7 @@
   "devDependencies": {
     "budo": "^5.1.1",
     "corsify": "^2.1.0",
+    "data-form": "github:editdata/data-form",
     "data-grid": "editdata/data-grid",
     "data-map": "editdata/data-map",
     "envify": "^3.4.0",
