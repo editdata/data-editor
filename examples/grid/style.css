@@ -39,3 +39,24 @@ a:hover, a:focus {
 .view-wrapper.card-open {
   width: 57%;
 }
+
+#data-form-wrapper {
+  position: fixed;
+  width: 43%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: -2px 3px 5px rgba(0,0,0,0.1);
+}
+
+.data-form-header {
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background-color: #fff;
+}

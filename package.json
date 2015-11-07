@@ -8,8 +8,7 @@
   },
   "scripts": {
     "test": "tape tests/*.js | tap-spec",
-    "test-browser": "budo tests/shareabouts.js -- -t [ envify --NODE_ENV development ]",
-    "example-shareabouts": "budo examples/shareabouts/index.js --live --dir examples/shareabouts -- -t [ envify --NODE_ENV development ]",
+    "test-browser": "budo tests/*.js -- -t [ envify --NODE_ENV development ]",
     "example-grid-css": "sheetify examples/grid/style.css > examples/grid/bundle.css",
     "example-grid": "budo examples/grid/index.js --live --onupdate 'npm run example-grid-css' --dir examples/grid -- -t [ envify --NODE_ENV development ]",
     "example-map-css": "sheetify examples/map/style.css > examples/map/bundle.css",
@@ -31,6 +30,7 @@
   "homepage": "https://github.com/editdata/data-editor#readme",
   "dependencies": {
     "base-element": "^3.0.1",
+    "component-emitter": "^1.2.0",
     "csv-write-stream": "^1.0.0",
     "cuid": "^1.3.8",
     "data-format": "editdata/data-format",
@@ -46,11 +46,12 @@
     "view-list": "^2.0.0"
   },
   "devDependencies": {
-    "budo": "^5.1.1",
+    "budo": "^5.1.5",
     "corsify": "^2.1.0",
     "data-form": "github:editdata/data-form",
     "data-grid": "editdata/data-grid",
     "data-map": "editdata/data-map",
+    "documentation-readme": "^2.0.0",
     "envify": "^3.4.0",
     "http-proxy": "^1.11.2",
     "level-js": "^2.2.2",
