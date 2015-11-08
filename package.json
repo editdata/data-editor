@@ -38,13 +38,11 @@
   },
   "devDependencies": {
     "budo": "^5.1.5",
-    "corsify": "^2.1.0",
     "data-form": "github:editdata/data-form",
     "data-grid": "editdata/data-grid",
     "data-map": "editdata/data-map",
     "documentation-readme": "^2.0.0",
     "envify": "^3.4.0",
-    "http-proxy": "^1.11.2",
     "level-js": "^2.2.2",
     "levelup": "^1.2.1",
     "mapbox.js": "^2.2.2",
