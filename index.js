@@ -4,12 +4,12 @@ module.exports = function createEditor (options) {
   var editor = {}
   emitter(editor)
 
-  editor.format = require('./lib/format')(editor, options)
-  editor.rows = require('./lib/rows')(editor, options)
-  editor.properties = require('./lib/properties')(editor, options)
-  editor.metadata = require('./lib/metadata')(editor, options)
+  editor.format = require('./lib/format')(options)
+  editor.rows = require('./lib/rows')(options)
+  editor.properties = require('./lib/properties')(options)
+  editor.metadata = require('./lib/metadata')(options)
 
-  editor.format = function editor_format (dataset) {
+  editor.init = function editor_init (dataset) {
     return editor.format.init(dataset)
   }
 
